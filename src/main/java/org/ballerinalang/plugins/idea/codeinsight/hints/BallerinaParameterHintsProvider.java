@@ -16,9 +16,9 @@
 
 package org.ballerinalang.plugins.idea.codeinsight.hints;
 
+import com.intellij.codeInsight.hints.HintInfo;
 import com.intellij.codeInsight.hints.InlayInfo;
 import com.intellij.codeInsight.hints.InlayParameterHintsProvider;
-import com.intellij.codeInsight.hints.MethodInfo;
 import com.intellij.lang.Language;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
@@ -59,18 +59,18 @@ public class BallerinaParameterHintsProvider implements InlayParameterHintsProvi
     }
 
     /**
-     * Calls second to get method info. This is used to identify blacklisted functions and prevent
+     * Calls second to get method info. This seem to be used to identify blacklisted functions and prevent
      * adding parameter info.
      *
      * @param element element to get method info
-     * @return {@link MethodInfo} object which contains function details.
+     * @return {@link HintInfo} object which contains function details.
      */
     @Nullable
     @Override
-    public MethodInfo getMethodInfo(PsiElement element) {
+    public HintInfo getHintInfo(PsiElement element) {
         if (element instanceof FunctionInvocationStatementNode || element instanceof FunctionInvocationNode
                 || element instanceof ConnectorInitExpressionNode || element instanceof ActionInvocationNode) {
-            return getMethodInfoForElement(element);
+            return getHintInfoForElement(element);
         }
         return null;
     }
@@ -146,7 +146,7 @@ public class BallerinaParameterHintsProvider implements InlayParameterHintsProvi
     }
 
     @Nullable
-    private MethodInfo getMethodInfoForElement(PsiElement element) {
+    private HintInfo getHintInfoForElement(PsiElement element) {
         // Get the correct name identifier.
         PsiElement nameIdentifier = getNameIdentifier(element);
         if (nameIdentifier == null) {
@@ -185,7 +185,7 @@ public class BallerinaParameterHintsProvider implements InlayParameterHintsProvi
         }
         // Return a MethodInfoObject. The first argument is the fully qualified name of the function, etc. The second
         // argument is a list of parameters. This seems to be used to prevent adding InlayInfo in blacklisted functions.
-        return new MethodInfo(nameIdentifier.getText(), params);
+        return new HintInfo.MethodInfo(nameIdentifier.getText(), params);
     }
 
     /**
