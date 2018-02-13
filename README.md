@@ -4,6 +4,10 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/9520-ballerina.svg)](https://plugins.jetbrains.com/plugin/9520-ballerina)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/9520-ballerina.svg)](https://plugins.jetbrains.com/plugin/9520-ballerina)
 
+This repository is no longer used for development. Current developments are done in following repository.
+
+https://github.com/ballerina-lang/ballerina
+
 ## Building from the source
 
 1. Clone the repository using the following command.
