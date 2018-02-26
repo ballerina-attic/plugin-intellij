@@ -3,5 +3,5 @@ package ${PACKAGE_NAME};
 #end
 
 public function main (string[] args) {
-    println("Hello, World!");
+    io:println("Hello, World!");
 }
